@@ -1,0 +1,176 @@
+/* CSS Properties Template
+  1) Display stuff
+  2) Positioning stuff
+  3) Box model stuff
+  4) Typography
+  5) Manipulation
+  6) Misc.
+*/
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  font-family: "Ubuntu", monospace;
+  font-weight: 700;
+  color: white;
+  height: 100vh;
+}
+
+.calculator {
+  display: grid;
+  grid-template-columns: 0.5em repeat(5, 2em) 0.5em;
+  grid-template-rows: 0.5em 2.5em repeat(5, 2em) 0.5em;
+  gap: 0.5em;
+  grid-template-areas:
+    ". . . . . . ."
+    ". display display display display display ."
+    ". memory-add memory-sub memory-recall-clear clear-display clear-display ."
+    ". seven eight nine division multiplication ."
+    ". four five six sqrt percent ."
+    ". one two three minus pos-neg ."
+    ". zero dbl-zero decimal plus equals ."
+    ". . . . . . .";
+  /* width: 100%; */
+  background-color: #2f2e3f;
+  border-radius: 10px;
+}
+
+#display {
+  grid-area: display;
+  margin-bottom: 0.5em;
+  background-color: #fefefe;
+  /* font-family: ; */
+  color: #090909;
+}
+
+#memory-add {
+  grid-area: memory-add;
+}
+
+#memory-sub {
+  grid-area: memory-sub;
+}
+
+#memory-recall-clear {
+  grid-area: memory-recall-clear;
+}
+
+#clear-display {
+  grid-area: clear-display;
+}
+
+#seven {
+  grid-area: seven;
+}
+
+#eight {
+  grid-area: eight;
+}
+
+#nine {
+  grid-area: nine;
+}
+
+#division {
+  grid-area: division;
+}
+
+#multiplication {
+  grid-area: multiplication;
+  font-size: 1.75rem;
+}
+
+#four {
+  grid-area: four;
+}
+
+#five {
+  grid-area: five;
+}
+
+#six {
+  grid-area: six;
+}
+
+#sqrt {
+  grid-area: sqrt;
+}
+
+#percent {
+  grid-area: percent;
+}
+
+#one {
+  grid-area: one;
+}
+
+#two {
+  grid-area: two;
+}
+
+#three {
+  grid-area: three;
+}
+
+#minus {
+  grid-area: minus;
+  font-size: 1.5rem;
+}
+
+#pos-neg {
+  grid-area: pos-neg;
+}
+
+#zero {
+  grid-area: zero;
+}
+
+#dbl-zero {
+  grid-area: dbl-zero;
+}
+
+#decimal {
+  grid-area: decimal;
+}
+
+#plus {
+  grid-area: plus;
+  font-size: 1.5rem;
+}
+
+#equals {
+  grid-area: equals;
+}
+
+/*============*/
+/* Components */
+/*============*/
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.btn--number {
+  background-color: #999db3;
+}
+
+.btn--memory {
+  background-color: #4d88bc;
+  font-size: 0.875rem;
+}
+
+.btn--function {
+  background-color: #f0e7e7;
+  color: #302f2f;
+  font-size: 1.25rem;
+}
