@@ -7,6 +7,19 @@
   6) Misc.
 */
 
+:root {
+  --calc-clr: #2f2e3f;
+  --calc-shdw: #1d1d2562;
+  --disp-clr: #fefefe;
+  --mem-btn-clr: #4d88bc;
+  --num-btn-clr: #999db3;
+  --num-btn-shddw: #686b79;
+  --mem-btn-shdw: #355d80;
+  --func-btn-clr: #f0e7e7;
+  --func-btn-txt: #302f2f;
+  --func-btn-shdw: #bdb6b6;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -38,14 +51,15 @@ body {
     ". zero dbl-zero decimal plus equals ."
     ". . . . . . .";
   /* width: 100%; */
-  background-color: #2f2e3f;
+  background-color: var(--calc-clr);
   border-radius: 10px;
+  box-shadow: 0 3px 4px 3px var(--calc-shdw);
 }
 
 #display {
   grid-area: display;
   margin-bottom: 0.5em;
-  background-color: #fefefe;
+  background-color: var(--disp-clr);
   /* font-family: ; */
   color: #090909;
 }
@@ -161,16 +175,19 @@ body {
 }
 
 .btn--number {
-  background-color: #999db3;
+  background-color: var(--num-btn-clr);
+  box-shadow: 0 3px 1px 1px var(--num-btn-shddw);
 }
 
 .btn--memory {
-  background-color: #4d88bc;
+  background-color: var(--mem-btn-clr);
   font-size: 0.875rem;
+  box-shadow: 0 3px 1px 1px var(--mem-btn-shdw);
 }
 
 .btn--function {
-  background-color: #f0e7e7;
-  color: #302f2f;
+  background-color: var(--func-btn-clr);
+  color: var(--func-btn-txt);
   font-size: 1.25rem;
+  box-shadow: 0 3px 1px 1px var(--func-btn-shdw);
 }
