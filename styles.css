@@ -59,6 +59,7 @@ body {
 #display {
   grid-area: display;
   margin-bottom: 0.5em;
+  text-align: right;
   background-color: var(--disp-clr);
   /* font-family: ; */
   color: #090909;
