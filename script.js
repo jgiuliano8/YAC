@@ -67,7 +67,7 @@ function memBtnPressed(btn) {}
 
 function fncBtnPressed(btn) {
   fncBtnPrevPress = true;
-  if (isDisplayEmpty) {
+  if (isDisplayEmpty()) {
     alert("Display is empty");
   } else {
     alert("Display is not empty");
@@ -78,18 +78,17 @@ function numBtnPressed(btn) {
   //Return if decimal clicked and display already has a decimal in it
   if (btn === "decimal" && displayElem.innerHTML.includes(".")) return;
 
+  //Alert if display is full of digits/decimal
+  if (displayElem.innerHTML.length >= 20) {
+    alert("Display Maxed out!");
+    return;
+  }
   //If function button was previously clicked, clear display
   if (fncBtnPrevPress === true) {
     displayElem.innerHTML = "";
-  } else {
-    //Alert if display is full of digits/decimal
-    if (displayElem.innerHTML.length >= 20) {
-      alert("Display Maxed out!");
-    } else {
-      //Add digit or decimal to display
-      displayElem.innerHTML += numBtns[btn];
-    }
   }
+  //Add digit or decimal to display
+  displayElem.innerHTML += numBtns[btn];
 
   //Reset function button pressed state variable
   fncBtnPrevPress = false;
