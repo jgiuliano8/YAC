@@ -31,3 +31,39 @@ const btnFuncMin = document.getElementById("minus");
 const btnFuncPosNeg = document.getElementById("pos-neg");
 const btnFuncPlus = document.getElementById("plus");
 const btnFuncEql = document.getElementById("equals");
+
+function memBtnPressed(btn) {}
+
+function fncBtnPressed(btn) {}
+
+function numBtnPressed(btn) {}
+
+function clrBtnPressed(btn) {}
+
+function eqlsBtnPressed(btn) {}
+
+document
+  .querySelector(".calculator")
+  .addEventListener("click", function (event) {
+    const btnType = event.target.dataset.buttonType;
+    const button = event.target.id;
+    // console.log(event.target, event.currentTarget);
+    console.log(btnType);
+    switch (btnType) {
+      case "memory":
+        memBtnPressed(button);
+        break;
+      case "function":
+        fncBtnPressed(button);
+        break;
+      case "number":
+        numBtnPressed(button);
+        break;
+      case "clear":
+        clrBtnPressed(button);
+        break;
+      case "equals":
+        eqlsBtnPressed(button);
+        break;
+    }
+  });

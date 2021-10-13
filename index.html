@@ -12,34 +12,71 @@
     />
     <link rel="stylesheet" href="styles.css" />
     <title>Yet Another Calculator</title>
+    <script defer src="script.js"></script>
   </head>
   <body>
     <main class="calculator">
       <div id="display"></div>
-      <div class="btn btn--memory" id="memory-add">M+</div>
-      <div class="btn btn--memory" id="memory-sub">M-</div>
-      <div class="btn btn--memory" id="memory-recall-clear">MRC</div>
-      <div class="btn btn--memory" id="clear-display">C/CE</div>
-      <div class="btn btn--number" id="seven">7</div>
-      <div class="btn btn--number" id="eight">8</div>
-      <div class="btn btn--number" id="nine">9</div>
-      <div class="btn btn--function" id="division">&#247;</div>
-      <div class="btn btn--function" id="multiplication">&#215;</div>
-      <div class="btn btn--number" id="four">4</div>
-      <div class="btn btn--number" id="five">5</div>
-      <div class="btn btn--number" id="six">6</div>
-      <div class="btn btn--function" id="sqrt">&#8730;</div>
-      <div class="btn btn--function" id="percent">%</div>
-      <div class="btn btn--number" id="one">1</div>
-      <div class="btn btn--number" id="two">2</div>
-      <div class="btn btn--number" id="three">3</div>
-      <div class="btn btn--function" id="minus">&#8722;</div>
-      <div class="btn btn--function" id="pos-neg">+/-</div>
-      <div class="btn btn--number" id="zero">0</div>
-      <div class="btn btn--number" id="dbl-zero">00</div>
-      <div class="btn btn--number" id="decimal">.</div>
-      <div class="btn btn--function" id="plus">+</div>
-      <div class="btn btn--function" id="equals">=</div>
+      <div class="btn btn--memory" id="memory-add" data-button-type="memory">
+        M+
+      </div>
+      <div class="btn btn--memory" id="memory-sub" data-button-type="memory">
+        M-
+      </div>
+      <div
+        class="btn btn--memory"
+        id="memory-recall-clear"
+        data-button-type="memory"
+      >
+        MRC
+      </div>
+      <div class="btn btn--memory" id="clear-display" data-button-type="clear">
+        C/CE
+      </div>
+      <div class="btn btn--number" id="seven" data-button-type="number">7</div>
+      <div class="btn btn--number" id="eight" data-button-type="number">8</div>
+      <div class="btn btn--number" id="nine" data-button-type="number">9</div>
+      <div class="btn btn--function" id="division" data-button-type="function">
+        &#247;
+      </div>
+      <div
+        class="btn btn--function"
+        id="multiplication"
+        data-button-type="function"
+      >
+        &#215;
+      </div>
+      <div class="btn btn--number" id="four" data-button-type="number">4</div>
+      <div class="btn btn--number" id="five" data-button-type="number">5</div>
+      <div class="btn btn--number" id="six" data-button-type="number">6</div>
+      <div class="btn btn--function" id="sqrt" data-button-type="function">
+        &#8730;
+      </div>
+      <div class="btn btn--function" id="percent" data-button-type="function">
+        %
+      </div>
+      <div class="btn btn--number" id="one" data-button-type="number">1</div>
+      <div class="btn btn--number" id="two" data-button-type="number">2</div>
+      <div class="btn btn--number" id="three" data-button-type="number">3</div>
+      <div class="btn btn--function" id="minus" data-button-type="function">
+        &#8722;
+      </div>
+      <div class="btn btn--function" id="pos-neg" data-button-type="pos-neg">
+        +/-
+      </div>
+      <div class="btn btn--number" id="zero" data-button-type="number">0</div>
+      <div class="btn btn--number" id="dbl-zero" data-button-type="number">
+        00
+      </div>
+      <div class="btn btn--number" id="decimal" data-button-type="number">
+        .
+      </div>
+      <div class="btn btn--function" id="plus" data-button-type="function">
+        +
+      </div>
+      <div class="btn btn--function" id="equals" data-button-type="equals">
+        =
+      </div>
     </main>
   </body>
 </html>
