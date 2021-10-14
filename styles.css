@@ -12,10 +12,13 @@
   --calc-shdw: #1d1d2562;
   --disp-clr: #fefefe;
   --mem-btn-clr: #4d88bc;
-  --num-btn-clr: #999db3;
-  --num-btn-shddw: #686b79;
+  --mem-btn-actv: #355e83;
   --mem-btn-shdw: #355d80;
+  --num-btn-clr: #999db3;
+  --num-btn-actv: #727585;
+  --num-btn-shdw: #686b79;
   --func-btn-clr: #f0e7e7;
+  --func-btn-actv: #ddd4d4;
   --func-btn-txt: #302f2f;
   --func-btn-shdw: #bdb6b6;
 }
@@ -181,7 +184,11 @@ body {
 
 .btn--number {
   background-color: var(--num-btn-clr);
-  box-shadow: 0 3px 1px 1px var(--num-btn-shddw);
+  box-shadow: 0 3px 1px 1px var(--num-btn-shdw);
+}
+
+.btn--number:active {
+  background-color: var(--num-btn-actv);
 }
 
 .btn--memory {
@@ -190,9 +197,17 @@ body {
   box-shadow: 0 3px 1px 1px var(--mem-btn-shdw);
 }
 
+.btn--memory:active {
+  background-color: var(--mem-btn-actv);
+}
+
 .btn--function {
   background-color: var(--func-btn-clr);
   color: var(--func-btn-txt);
   font-size: 1.25rem;
   box-shadow: 0 3px 1px 1px var(--func-btn-shdw);
+}
+
+.btn--function:active {
+  background-color: var(--func-btn-actv);
 }
