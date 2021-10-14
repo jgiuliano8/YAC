@@ -44,7 +44,7 @@ body {
   grid-template-areas:
     ". . . . . . ."
     ". display display display display display ."
-    ". memory-add memory-sub memory-recall-clear clear-display clear-display ."
+    ". memory-add memory-sub memory-recall memory-clear clear-display ."
     ". seven eight nine division multiplication ."
     ". four five six sqrt percent ."
     ". one two three minus pos-neg ."
@@ -73,8 +73,12 @@ body {
   grid-area: memory-sub;
 }
 
-#memory-recall-clear {
-  grid-area: memory-recall-clear;
+#memory-recall {
+  grid-area: memory-recall;
+}
+
+#memory-clear {
+  grid-area: memory-clear;
 }
 
 #clear-display {

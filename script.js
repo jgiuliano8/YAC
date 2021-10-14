@@ -6,7 +6,7 @@ const displayElem = document.getElementById("display");
 //Memory button elements
 const btnMemAdd = document.getElementById("memory-add");
 const btnMemSub = document.getElementById("memory-sub");
-const btnMemRecClr = document.getElementById("memory-recall-clear");
+const btnMemRecClr = document.getElementById("memory-recall");
 const btnClrDisp = document.getElementById("clear-display");
 
 //Number button elements
@@ -40,6 +40,8 @@ let fncBtnPrevPress = false;
 let clrBtnPrevPress = false;
 //Keeps track if equals button just pressed
 let eqlsBtnPrevPress = false;
+//Keeps track if any memory button just pressed
+let memBtnPrevPress = false;
 
 //The number buttons translation object
 const numBtns = {
@@ -74,6 +76,9 @@ let currentEquation = {};
 //Counter keeps track of the # of values/functions in
 //the current equation
 let currentValueIndex = 0;
+
+//The memory storage variable for the memory keys
+let memValue;
 
 //Functions to check display state
 function isDisplayEmpty() {
@@ -121,7 +126,39 @@ function evalCurrEqutn() {
   currentEquation = {};
 }
 
-function memBtnPressed(btn) {}
+function memBtnPressed(btn) {
+  switch (btn) {
+    case "memory-add":
+      if (isDisplayEmpty()) {
+        alert("Display is empty. No number to add to memory.");
+        return;
+      }
+      //If memory is empty, initialize to 0 for math
+      //purposes
+      if (memValue === undefined) memValue = 0;
+      memValue += Number(displayElem.innerHTML);
+      break;
+    case "memory-sub":
+      if (isDisplayEmpty()) {
+        alert("Display is empty. No number to subtract from memory.");
+        return;
+      }
+      //If memory is empty, initialize to 0 for math
+      //purposes
+      if (memValue === undefined) memValue = 0;
+      memValue -= Number(displayElem.innerHTML);
+      break;
+    case "memory-recall":
+      if (memValue === undefined) {
+        alert("Memory is empty. Please store something first.");
+        return;
+      } else displayElem.innerHTML = memValue;
+      break;
+    case "memory-clear":
+      memValue = undefined;
+  }
+  memBtnPrevPress = true;
+}
 
 function fncBtnPressed(btn) {
   //If display is empty, alert and return
@@ -213,7 +250,11 @@ function numBtnPressed(btn) {
   }
 
   //If function button was previously clicked, clear display
-  if (fncBtnPrevPress === true || eqlsBtnPrevPress === true) {
+  if (
+    fncBtnPrevPress === true ||
+    eqlsBtnPrevPress === true ||
+    memBtnPrevPress === true
+  ) {
     displayElem.innerHTML = "";
   }
   //Add digit or decimal to display
@@ -233,7 +274,7 @@ function clrBtnPressed() {
   //time pressing C/CE
   if (!clrBtnPrevPress) {
     displayElem.innerHTML = "";
-    alert("Display to be cleared. Press C/CE again to clear equation.");
+    alert("Display will be cleared. Press C/CE again to clear equation.");
     clrBtnPrevPress = true;
   }
 
