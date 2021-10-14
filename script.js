@@ -139,18 +139,30 @@ function fncBtnPressed(btn) {
     return;
   }
 
+  //At this point we know display is not empty,
+  //so increase currentValueIndex
   ++currentValueIndex;
 
+  //If this is the second number of the equation, then
+  //store the number in the current equation object and
+  //then evaluate the equation and display results.
   if (currentValueIndex === 2) {
     currentEquation[`value${currentValueIndex}`] = Number(
       displayElem.innerHTML
     );
     evalCurrEqutn();
+    ++currentValueIndex;
   }
 
-  currentEquation[`value${currentValueIndex}`] = Number(displayElem.innerHTML);
-  currentEquation[`func${currentValueIndex}`] = funcBtns[btn];
+  if (currentValueIndex === 1) {
+    currentEquation[`value${currentValueIndex}`] = Number(
+      displayElem.innerHTML
+    );
+    currentEquation[`func${currentValueIndex}`] = funcBtns[btn];
+  }
 
+  clrBtnPrevPress = false;
+  eqlsBtnPrevPress = false;
   fncBtnPrevPress = true;
 }
 
@@ -215,6 +227,7 @@ function numBtnPressed(btn) {
 
 function clrBtnPressed() {
   fncBtnPrevPress = false;
+  eqlsBtnPrevPress = false;
 
   //Clear display if this is the first
   //time pressing C/CE
