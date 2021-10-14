@@ -41,8 +41,8 @@ body {
 
 .calculator {
   display: grid;
-  grid-template-columns: 0.5em repeat(5, 2em) 0.5em;
-  grid-template-rows: 0.5em 2.5em repeat(5, 2em) 0.5em;
+  grid-template-columns: 0.5em repeat(5, 1fr) 0.5em;
+  grid-template-rows: 0.5em 2.5em repeat(5, 3em) 0.5em;
   gap: 0.5em;
   grid-template-areas:
     ". . . . . . ."
@@ -210,4 +210,12 @@ body {
 
 .btn--function:active {
   background-color: var(--func-btn-actv);
+}
+
+@media screen and (min-width: 500px) {
+  .calculator {
+    grid-template-columns: 0.5em repeat(5, 2em) 0.5em;
+    grid-template-rows: 0.5em 2.5em repeat(5, 2em) 0.5em;
+    gap: 0.5em;
+  }
 }
