@@ -51,7 +51,8 @@ body {
     ". zero dbl-zero decimal plus equals ."
     ". . . . . . .";
   /* width: 100%; */
-  background-color: var(--calc-clr);
+  /* background-color: var(--calc-clr); */
+  background-image: linear-gradient(135deg, rgb(99, 7, 99), rgb(66, 6, 66));
   border-radius: 10px;
   box-shadow: 0 3px 4px 3px var(--calc-shdw);
 }
