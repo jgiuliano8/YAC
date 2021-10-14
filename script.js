@@ -103,6 +103,24 @@ function checkDisplay() {
   return false;
 }
 
+function evalCurrEqutn() {
+  //Initialize the temporary equation variable
+  let equation = "";
+  //Unpack currentEquation object
+  for (let counter = 1; counter <= currentValueIndex; counter++) {
+    currentEquation[`func${counter}`]
+      ? (equation +=
+          currentEquation[`value${counter}`] +
+          currentEquation[`func${counter}`])
+      : (equation += currentEquation[`value${counter}`]);
+  }
+  let result = eval(equation);
+  displayElem.innerHTML = result;
+  //Reset value counter and equation
+  currentValueIndex = 0;
+  currentEquation = {};
+}
+
 function memBtnPressed(btn) {}
 
 function fncBtnPressed(btn) {
@@ -122,8 +140,17 @@ function fncBtnPressed(btn) {
   }
 
   ++currentValueIndex;
+
+  if (currentValueIndex === 2) {
+    currentEquation[`value${currentValueIndex}`] = Number(
+      displayElem.innerHTML
+    );
+    evalCurrEqutn();
+  }
+
   currentEquation[`value${currentValueIndex}`] = Number(displayElem.innerHTML);
   currentEquation[`func${currentValueIndex}`] = funcBtns[btn];
+
   fncBtnPrevPress = true;
 }
 
@@ -201,6 +228,7 @@ function clrBtnPressed() {
   //time pressing C/CE
   else {
     currentEquation = {};
+    currentValueIndex = 0;
     alert("Equation cleared.");
     clrBtnPrevPress = false;
   }
@@ -219,19 +247,7 @@ function eqlsBtnPressed() {
     );
   }
 
-  //Unpack currentEquation object
-  for (let counter = 1; counter <= currentValueIndex; counter++) {
-    currentEquation[`func${counter}`]
-      ? (equation +=
-          currentEquation[`value${counter}`] +
-          currentEquation[`func${counter}`])
-      : (equation += currentEquation[`value${counter}`]);
-  }
-  let result = eval(equation);
-  console.log(equation, result, currentEquation, currentValueIndex);
-  //Reset value counter and equation
-  currentValueIndex = 0;
-  currentEquation = {};
+  evalCurrEqutn();
 }
 
 document
