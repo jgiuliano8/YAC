@@ -38,7 +38,7 @@ body {
 
 .calculator {
   display: grid;
-  grid-template-columns: auto repeat(5, 2em) auto;
+  grid-template-columns: 0.5em repeat(5, 2em) 0.5em;
   grid-template-rows: 0.5em 2.5em repeat(5, 2em) 0.5em;
   gap: 0.5em;
   grid-template-areas:
@@ -50,7 +50,6 @@ body {
     ". one two three minus pos-neg ."
     ". zero dbl-zero decimal plus equals ."
     ". . . . . . .";
-  width: 100%;
   /* background-color: var(--calc-clr); */
   background-image: linear-gradient(135deg, rgb(99, 7, 99), rgb(66, 6, 66));
   border-radius: 10px;
