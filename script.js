@@ -38,6 +38,8 @@ const btnFuncEql = document.getElementById("equals");
 let fncBtnPrevPress = false;
 //Keeps track if clear button was pressed once already
 let clrBtnPrevPress = false;
+//Keeps track if equals button just pressed
+let eqlsBtnPrevPress = false;
 
 //The number buttons translation object
 const numBtns = {
@@ -59,15 +61,19 @@ const numBtns = {
 const funcBtns = {
   division: "/",
   multiplication: "*",
-  sqrt: "sqrt",
   minus: "-",
   plus: "+",
 };
 
 //The current equation object
+//Keeps track of all the values and functions input
+//before the equals button is pressed.
 let currentEquation = {};
 
-// displayElem.innerHTML = "123456789012345678901";
+//The current value counter
+//Counter keeps track of the # of values/functions in
+//the current equation
+let currentValueIndex = 0;
 
 //Functions to check display state
 function isDisplayEmpty() {
@@ -100,13 +106,25 @@ function checkDisplay() {
 function memBtnPressed(btn) {}
 
 function fncBtnPressed(btn) {
-  fncBtnPrevPress = true;
+  //If display is empty, alert and return
   if (isDisplayEmpty()) {
     alert("Display is empty. No number to perform function on!");
     return;
-  } else {
-    currentEquation[displayElem.innerHTML] = btn;
   }
+
+  //If function button pressed more than once in a row,
+  //alert and return
+  if (fncBtnPrevPress) {
+    alert(
+      "Cannot press function button more than once. First function is the one registered. Please click another number or the equals button."
+    );
+    return;
+  }
+
+  ++currentValueIndex;
+  currentEquation[`value${currentValueIndex}`] = Number(displayElem.innerHTML);
+  currentEquation[`func${currentValueIndex}`] = funcBtns[btn];
+  fncBtnPrevPress = true;
 }
 
 function prctBtnPressed() {
@@ -156,7 +174,7 @@ function numBtnPressed(btn) {
   }
 
   //If function button was previously clicked, clear display
-  if (fncBtnPrevPress === true) {
+  if (fncBtnPrevPress === true || eqlsBtnPrevPress === true) {
     displayElem.innerHTML = "";
   }
   //Add digit or decimal to display
@@ -165,6 +183,7 @@ function numBtnPressed(btn) {
   //Reset buttons pressed state variables
   fncBtnPrevPress = false;
   clrBtnPrevPress = false;
+  eqlsBtnPrevPress = false;
 }
 
 function clrBtnPressed() {
@@ -188,7 +207,31 @@ function clrBtnPressed() {
 }
 
 function eqlsBtnPressed() {
+  let equation = "";
+  eqlsBtnPrevPress = true;
   fncBtnPrevPress = false;
+  //If there's a number in the display, store as the
+  //last number
+  if (!isDisplayEmpty()) {
+    ++currentValueIndex;
+    currentEquation[`value${currentValueIndex}`] = Number(
+      displayElem.innerHTML
+    );
+  }
+
+  //Unpack currentEquation object
+  for (let counter = 1; counter <= currentValueIndex; counter++) {
+    currentEquation[`func${counter}`]
+      ? (equation +=
+          currentEquation[`value${counter}`] +
+          currentEquation[`func${counter}`])
+      : (equation += currentEquation[`value${counter}`]);
+  }
+  let result = eval(equation);
+  console.log(equation, result, currentEquation, currentValueIndex);
+  //Reset value counter and equation
+  currentValueIndex = 0;
+  currentEquation = {};
 }
 
 document
