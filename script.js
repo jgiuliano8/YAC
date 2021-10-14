@@ -81,6 +81,22 @@ function isDisplayMax() {
   }
 }
 
+function checkDisplay() {
+  //Alert if display is empty
+  if (isDisplayEmpty()) {
+    alert("Display is empty. No number to perform function on!");
+    return true;
+  }
+
+  //Alert if display is full of digits
+  if (isDisplayMax()) {
+    alert("Display Maxed out!");
+    return true;
+  }
+
+  return false;
+}
+
 function memBtnPressed(btn) {}
 
 function fncBtnPressed(btn) {
@@ -94,18 +110,9 @@ function fncBtnPressed(btn) {
 }
 
 function prctBtnPressed() {
-  //If no number in display, alert and
-  //return
-  if (isDisplayEmpty()) {
-    alert("Display is empty. No number to perform function on!");
-    return;
-  }
-
-  //Alert if display is full of digits
-  if (isDisplayMax()) {
-    alert("Display Maxed out!");
-    return;
-  }
+  //Check if display is empty or maxed out
+  //Exit function if it is.
+  if (checkDisplay()) return;
 
   //Otherwise, divide current number
   //in display by 100
@@ -115,18 +122,9 @@ function prctBtnPressed() {
 }
 
 function sqrtBtnPressed() {
-  //If no number in display, alert and
-  //return
-  if (isDisplayEmpty()) {
-    alert("Display is empty. No number to perform function on!");
-    return;
-  }
-
-  //Alert if display is full of digits
-  if (isDisplayMax()) {
-    alert("Display Maxed out!");
-    return;
-  }
+  //Check if display is empty or maxed out
+  //Exit function if it is.
+  if (checkDisplay()) return;
 
   //Otherwise, take square root of
   //current number in display
@@ -135,7 +133,17 @@ function sqrtBtnPressed() {
   clrBtnPrevPress = false;
 }
 
-function pnBtnPressed() {}
+function pnBtnPressed() {
+  //Check if display is empty or maxed out
+  //Exit function if it is.
+  if (checkDisplay()) return;
+
+  //Otherwise, reverse sign on current number
+  //in display
+  Number(displayElem.innerHTML) <= 0
+    ? (displayElem.innerHTML = Math.abs(Number(displayElem.innerHTML)))
+    : (displayElem.innerHTML = -1 * Number(displayElem.innerHTML));
+}
 
 function numBtnPressed(btn) {
   //Return if decimal clicked and display already has a decimal in it
