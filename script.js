@@ -36,6 +36,8 @@ const btnFuncEql = document.getElementById("equals");
 
 //Keeps track if function button was last pressed
 let fncBtnPrevPress = false;
+//Keeps track if clear button was pressed once already
+let clrBtnPrevPress = false;
 
 //The number buttons translation object
 const numBtns = {
@@ -53,14 +55,30 @@ const numBtns = {
   nine: "9",
 };
 
+//The function buttons translation object
+const funcBtns = {
+  division: "/",
+  multiplication: "*",
+  sqrt: "sqrt",
+  minus: "-",
+  plus: "+",
+};
+
 //The current equation object
 let currentEquation = {};
 
 // displayElem.innerHTML = "123456789012345678901";
 
+//Functions to check display state
 function isDisplayEmpty() {
   if (displayElem.innerHTML === "") return true;
   else return false;
+}
+
+function isDisplayMax() {
+  if (displayElem.innerHTML.length >= 20) {
+    return true;
+  }
 }
 
 function memBtnPressed(btn) {}
@@ -68,21 +86,67 @@ function memBtnPressed(btn) {}
 function fncBtnPressed(btn) {
   fncBtnPrevPress = true;
   if (isDisplayEmpty()) {
-    alert("Display is empty");
+    alert("Display is empty. No number to perform function on!");
+    return;
   } else {
-    alert("Display is not empty");
+    currentEquation[displayElem.innerHTML] = btn;
   }
 }
+
+function prctBtnPressed() {
+  //If no number in display, alert and
+  //return
+  if (isDisplayEmpty()) {
+    alert("Display is empty. No number to perform function on!");
+    return;
+  }
+
+  //Alert if display is full of digits
+  if (isDisplayMax()) {
+    alert("Display Maxed out!");
+    return;
+  }
+
+  //Otherwise, divide current number
+  //in display by 100
+  displayElem.innerHTML = Number(displayElem.innerHTML) / 100;
+  fncBtnPrevPress = false;
+  clrBtnPrevPress = false;
+}
+
+function sqrtBtnPressed() {
+  //If no number in display, alert and
+  //return
+  if (isDisplayEmpty()) {
+    alert("Display is empty. No number to perform function on!");
+    return;
+  }
+
+  //Alert if display is full of digits
+  if (isDisplayMax()) {
+    alert("Display Maxed out!");
+    return;
+  }
+
+  //Otherwise, take square root of
+  //current number in display
+  displayElem.innerHTML = Math.sqrt(Number(displayElem.innerHTML));
+  fncBtnPrevPress = false;
+  clrBtnPrevPress = false;
+}
+
+function pnBtnPressed() {}
 
 function numBtnPressed(btn) {
   //Return if decimal clicked and display already has a decimal in it
   if (btn === "decimal" && displayElem.innerHTML.includes(".")) return;
 
-  //Alert if display is full of digits/decimal
-  if (displayElem.innerHTML.length >= 20) {
+  //Alert if display is full of digits
+  if (isDisplayMax()) {
     alert("Display Maxed out!");
     return;
   }
+
   //If function button was previously clicked, clear display
   if (fncBtnPrevPress === true) {
     displayElem.innerHTML = "";
@@ -90,15 +154,32 @@ function numBtnPressed(btn) {
   //Add digit or decimal to display
   displayElem.innerHTML += numBtns[btn];
 
-  //Reset function button pressed state variable
+  //Reset buttons pressed state variables
   fncBtnPrevPress = false;
+  clrBtnPrevPress = false;
 }
 
-function clrBtnPressed(btn) {
+function clrBtnPressed() {
   fncBtnPrevPress = false;
+
+  //Clear display if this is the first
+  //time pressing C/CE
+  if (!clrBtnPrevPress) {
+    displayElem.innerHTML = "";
+    alert("Display to be cleared. Press C/CE again to clear equation.");
+    clrBtnPrevPress = true;
+  }
+
+  //Clear equation if this is the second
+  //time pressing C/CE
+  else {
+    currentEquation = {};
+    alert("Equation cleared.");
+    clrBtnPrevPress = false;
+  }
 }
 
-function eqlsBtnPressed(btn) {
+function eqlsBtnPressed() {
   fncBtnPrevPress = false;
 }
 
@@ -116,14 +197,23 @@ document
       case "function":
         fncBtnPressed(button);
         break;
+      case "percent":
+        prctBtnPressed();
+        break;
+      case "sqrt":
+        sqrtBtnPressed();
+        break;
+      case "pos-neg":
+        pnBtnPressed();
+        break;
       case "number":
         numBtnPressed(button);
         break;
       case "clear":
-        clrBtnPressed(button);
+        clrBtnPressed();
         break;
       case "equals":
-        eqlsBtnPressed(button);
+        eqlsBtnPressed();
         break;
     }
   });
